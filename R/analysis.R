@@ -70,12 +70,15 @@ analysis <- data.frame(
   stringsAsFactors = FALSE
 )
 analysis <- analysis[!is.na(analysis$class), , drop = FALSE]
-analysis$log_height <- ifelse(!is.na(analysis$height) & analysis$height > 0,
-                              log(analysis$height), NA_real_)
-analysis$log_width <- ifelse(!is.na(analysis$width) & analysis$width > 0,
-                             log(analysis$width), NA_real_)
-analysis$log_aspect_ratio <- ifelse(!is.na(analysis$aspect_ratio) & analysis$aspect_ratio > 0,
-                                   log(analysis$aspect_ratio), NA_real_)
+log_positive <- function(x) {
+  result <- rep(NA_real_, length(x))
+  valid <- !is.na(x) & is.finite(x) & x > 0
+  result[valid] <- log(x[valid])
+  result
+}
+analysis$log_height <- log_positive(analysis$height)
+analysis$log_width <- log_positive(analysis$width)
+analysis$log_aspect_ratio <- log_positive(analysis$aspect_ratio)
 
 # Helpers for concise and consistent output.
 fmt_num <- function(x, digits = 3) {
@@ -233,14 +236,16 @@ write.csv(chi_df, file.path(out_dir, "chi_square_results.csv"), row.names = FALS
 write.csv(rbind(f_df, t_df), file.path(out_dir, "inference_results.csv"), row.names = FALSE, fileEncoding = "UTF-8")
 
 f_rows <- lapply(seq_len(nrow(f_df)), function(i) {
-  c(unname(log_labels[[f_df$variable[i]]]), fmt_num(f_df$statistic[i], 3),
+  c(unname(log_labels[[f_df$variable[i]]]),
+    paste0(f_df$n_ad[i], " / ", f_df$n_nonad[i]),
+    fmt_num(f_df$statistic[i], 3),
     paste0(fmt_num(sqrt(var(analysis[[f_df$variable[i]]][analysis$class == "ad"], na.rm = TRUE)), 3), " / ",
            fmt_num(sqrt(var(analysis[[f_df$variable[i]]][analysis$class == "nonad"], na.rm = TRUE)), 3)),
     fmt_p(f_df$p_value[i]), fmt_p(f_df$p_adjusted[i]))
 })
 write_tabular(file.path(out_dir, "f_test_table.tex"),
-              c("Variable", "$F=s^2_{ad}/s^2_{nonad}$", "SD (ad / non-ad)", "$p$", "Holm-adjusted $p$"),
-              f_rows, "lrrrr")
+              c("Variable", "$n$ (ad / non-ad)", "$F=s^2_{ad}/s^2_{nonad}$", "SD (ad / non-ad)", "$p$", "Holm-adjusted $p$"),
+              f_rows, "llrrrr")
 
 t_rows <- lapply(seq_len(nrow(t_df)), function(i) {
   c(unname(log_labels[[t_df$variable[i]]]), fmt_num(t_df$statistic[i], 3),
@@ -284,13 +289,29 @@ boxplot(log_aspect_ratio ~ class, data = analysis, main = "Log(aspect ratio)", x
 par(mfrow = c(1, 1))
 dev.off()
 
-png(file.path(fig_dir, "qq_log_height.png"), width = 1400, height = 700, res = 150)
-par(mfrow = c(1, 2), mar = c(5, 4, 4, 1))
-qqnorm(analysis$log_height[analysis$class == "ad"], main = "Q-Q plot: log(height), ad")
-qqline(analysis$log_height[analysis$class == "ad"])
-qqnorm(analysis$log_height[analysis$class == "nonad"], main = "Q-Q plot: log(height), non-ad")
-qqline(analysis$log_height[analysis$class == "nonad"])
-par(mfrow = c(1, 1))
+# Q-Q diagnostics for each log-transformed geometry variable, by class.
+# This gives the F-test assumption discussion diagnostics for all three variables.
+qq_variables <- c(
+  log_height = "Log height",
+  log_width = "Log width",
+  log_aspect_ratio = "Log aspect ratio"
+)
+# Remove the superseded one-variable plot so it cannot be mistaken for the new figure.
+old_qq_file <- file.path(fig_dir, "qq_log_height.png")
+if (file.exists(old_qq_file)) unlink(old_qq_file)
+png(file.path(fig_dir, "qq_log_geometry.png"), width = 1800, height = 1500, res = 150)
+par(mfrow = c(3, 2), mar = c(4, 4, 3, 1), oma = c(0, 0, 2, 0))
+for (v in names(qq_variables)) {
+  for (cl in c("ad", "nonad")) {
+    values <- analysis[[v]][analysis$class == cl]
+    values <- values[is.finite(values)]
+    qqnorm(values, main = paste0("Q-Q: ", qq_variables[[v]], ", ", cl),
+           xlab = "Theoretical normal quantiles", ylab = "Sample quantiles")
+    qqline(values, col = "blue")
+  }
+}
+mtext("Normal Q-Q plots for log-transformed geometry", outer = TRUE, cex = 1.1)
+par(mfrow = c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(0, 0, 0, 0))
 dev.off()
 
 local_prop <- tapply(local_data$local, local_data$class, mean, na.rm = TRUE) * 100
