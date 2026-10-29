@@ -1,0 +1,14 @@
+Internet Advertisements - analysis audit
+Input file: data/add.csv
+Rows after cleaning: 3279
+Selected fields: height, width, aspect_ratio, local, class
+Class counts: nonad 2820; ad 459
+Height missing: 903 (27.54%)
+Width missing: 901 (27.48%)
+Aspect-ratio missing: 910 (27.75%)
+Local missing: 15 (0.46%)
+
+Variance tests use log-transformed positive geometry variables and compare ad variance / non-ad variance.
+Welch tests compare mean log values; exp(mean difference) is a ratio of geometric means.
+F-tests are sensitive to departures from normality; see the supplied Q-Q plots.
+Missingness differs by class; complete-case findings should therefore be interpreted cautiously.
