@@ -1,14 +1,27 @@
 Internet Advertisements - analysis audit
 Input file: data/add.csv
 Rows after cleaning: 3279
-Selected fields: height, width, aspect_ratio, local, class
-Class counts: nonad 2820; ad 459
-Height missing: 903 (27.54%)
-Width missing: 901 (27.48%)
-Aspect-ratio missing: 910 (27.75%)
-Local missing: 15 (0.46%)
-
-Variance tests use log-transformed positive geometry variables and compare ad variance / non-ad variance.
-Welch tests compare mean log values; exp(mean difference) is a ratio of geometric means.
-F-tests are sensitive to departures from normality; see the supplied Q-Q plots.
-Missingness differs by class; complete-case findings should therefore be interpreted cautiously.
+Class counts: ad 459; nonad 2820
+Height observed: ad 386; nonad 1990
+Height missing: ad 73 (15.90%); nonad 830 (29.43%)
+Height-missing chi-square: 36.205; df = 1; p = 1.776e-09
+Chi-square continuity correction: disabled (correct = FALSE); all expected counts > 100: TRUE
+Log-height Welch geometric-mean ratio: 1.400
+Log-width Welch geometric-mean ratio: 2.772
+Log-height F ratio (ad variance / non-ad variance): 0.227
+Fligner-Killeen statistic: 325.45; df = 1; p = 9.396e-73
+Bootstrap log-height variance-ratio 95% CI: [0.15, 0.33] from 10000 resamples (seed 20261105)
+Exact repeated full rows beyond first copies: 856 (26.11%)
+Unique full feature rows: 2423
+Ad height exactly 60 pixels: 223 of 386 observed (57.8%)
+Ad dimensions exactly 468 by 60 pixels: 181 of 386 complete ad records (46.9%)
+Height geometric-mean ratio after exact-repeat removal: 1.289
+Width geometric-mean ratio after exact-repeat removal: 2.586
+Width geometric-mean ratio after exact-repeat removal 95% CI: [2.37, 2.82]
+Log-height F ratio after exact-repeat removal: 0.223
+Primary analyses use all supplied records and available observations for each variable.
+Aspect ratio is treated as width divided by height and is not tested separately.
+The local indicator is described in the dataset section but is not tested.
+The F-test assumes independent normal populations; histograms show concentrated, non-bell-shaped distributions.
+Fligner-Killeen is used as a rank-based variance check; the bootstrap interval resamples rows independently within class.
+Exact repeated feature rows do not prove repeated physical images because no unique image identifier is supplied.

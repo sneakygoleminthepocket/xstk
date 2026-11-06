@@ -1,0 +1,2 @@
+"F_ratio","F_p_value","fligner_statistic","fligner_df","fligner_p_value","bootstrap_lower","bootstrap_upper","bootstrap_repetitions","bootstrap_seed"
+0.227237317873056,9.97843635096734e-57,325.453971422166,1,9.39591316301545e-73,0.15011474589455,0.332450138117756,10000,20261105

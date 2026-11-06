@@ -1,3 +1,2 @@
-"test","statistic","df","p_value","detail"
-"Class by local indicator",0.1972294596173,1,0.656966501907581,"Observed local=1 proportions: ad vs nonad"
-"Class by height missingness",36.2048983308378,1,1.77623535305426e-09,"Missing height proportions: ad vs nonad"
+"test","statistic","df","p_value","ad_missing_percent","nonad_missing_percent","difference_percentage_points"
+"Class by height missingness",36.2048983308378,1,1.77623535305426e-09,15.9041394335512,29.4326241134752,-13.528484679924
