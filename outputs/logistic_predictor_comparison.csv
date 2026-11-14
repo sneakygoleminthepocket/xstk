@@ -1,0 +1,2 @@
+"width_only_test_auc","height_only_test_auc","both_predictors_test_auc","p_value_for_adding_height_to_width","p_value_for_adding_width_to_height"
+0.804065639746624,0.638811342412176,0.810137883146513,0.351819469273199,2.9967753394609e-89

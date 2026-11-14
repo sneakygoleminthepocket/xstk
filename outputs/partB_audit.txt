@@ -1,0 +1,17 @@
+Part B - Logistic regression audit
+Complete cases: 2369 (ads = 386; non-ads = 1983)
+Training set: 1657 (ads = 267; non-ads = 1390)
+Testing set: 712 (ads = 119; non-ads = 593)
+Model formula: ad ~ log_width + log_height
+                Estimate Std. Error     z value     Pr(>|z|)
+(Intercept) -13.49099757  0.8205154 -16.4421017 9.554708e-61
+log_width     2.23411777  0.1337328  16.7058291 1.188643e-62
+log_height    0.09933664  0.1067748   0.9303383 3.521959e-01
+Hold-out AUC: 0.810
+Five-fold cross-validation AUC: 0.834
+Accuracy at 0.5: 89.5%
+Sensitivity at 0.5: 52.9%
+Specificity at 0.5: 96.8%
+Post-hoc 468x60 rule accuracy: 91.2%
+Post-hoc 468x60 rule sensitivity: 46.9%
+Post-hoc 468x60 rule specificity: 99.8%

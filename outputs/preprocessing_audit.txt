@@ -1,0 +1,11 @@
+Preprocessing output
+Rows retained: 3279
+Original numeric predictors retained: 1558
+Derived log variables: log_height, log_width
+Class labels: ad, nonad
+Rows with missing height: 903
+Rows with missing width: 901
+Missing values are stored as empty CSV fields.
+No records were removed because a predictor value was missing.
+Exact duplicate records are retained in the primary preprocessed dataset.
+Output file: ./data/preprocessed_dataset.csv

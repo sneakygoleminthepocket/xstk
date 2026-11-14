@@ -1,0 +1,13 @@
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Rule & Cutoff & TN & FP & FN & TP & Accuracy & Sensitivity & Specificity & AUC
+\\
+\midrule
+Majority baseline & Always non-ad & 593 & 0 & 119 & 0 & 83.3\% & 0.0\% & 100.0\% & --
+\\
+Logistic regression & 0.500 & 574 & 19 & 56 & 63 & 89.5\% & 52.9\% & 96.8\% & 0.810
+\\
+Logistic regression & 0.161 & 478 & 115 & 44 & 75 & 77.7\% & 63.0\% & 80.6\% & 0.810
+\\
+\bottomrule
+\end{tabular}

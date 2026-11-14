@@ -1,0 +1,6 @@
+
+	Fligner-Killeen test of homogeneity of variances
+
+data:  list(ad_log_height, nonad_log_height)
+Fligner-Killeen:med chi-squared = 325.45, df = 1, p-value < 2.2e-16
+

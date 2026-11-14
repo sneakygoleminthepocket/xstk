@@ -1,0 +1,12 @@
+
+	F test to compare two variances
+
+data:  ad_log_height and nonad_log_height
+F = 0.22724, num df = 385, denom df = 1989, p-value < 2.2e-16
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.1955011 0.2662919
+sample estimates:
+ratio of variances 
+         0.2272373 
+

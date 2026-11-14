@@ -10,7 +10,6 @@ Log-height Welch geometric-mean ratio: 1.400
 Log-width Welch geometric-mean ratio: 2.772
 Log-height F ratio (ad variance / non-ad variance): 0.227
 Fligner-Killeen statistic: 325.45; df = 1; p = 9.396e-73
-Bootstrap log-height variance-ratio 95% CI: [0.15, 0.33] from 10000 resamples (seed 20261105)
 Exact repeated full rows beyond first copies: 856 (26.11%)
 Unique full feature rows: 2423
 Ad height exactly 60 pixels: 223 of 386 observed (57.8%)
@@ -19,9 +18,22 @@ Height geometric-mean ratio after exact-repeat removal: 1.289
 Width geometric-mean ratio after exact-repeat removal: 2.586
 Width geometric-mean ratio after exact-repeat removal 95% CI: [2.37, 2.82]
 Log-height F ratio after exact-repeat removal: 0.223
+Distinct full 1,558-predictor profiles represented under both labels: 3
+468x60 rule on all complete cases: accuracy 91.2% ; sensitivity 46.9% ; specificity 99.8%
+Non-advertisement records with a one-pixel side: 2
+Logistic model complete cases: 2369 (ad 386; nonad 1983)
+Logistic train/test sizes: 1657 / 712
+Logistic hold-out confusion matrix at 0.50: TN 574; FP 19; FN 56; TP 63
+Logistic test accuracy / baseline: 89.5% / 83.3%
+Logistic test sensitivity / specificity: 52.9% / 96.8%
+Logistic test AUC: 0.810
+Deterministic five-fold cross-validation AUC: 0.834
+Cross-validation folds cycle by complete-case position: ((position - 1) mod 5) + 1.
+Logistic lower cutoff (training ad prevalence): 0.161
+De-duplicated logistic AUC: 0.786
 Primary analyses use all supplied records and available observations for each variable.
 Aspect ratio is treated as width divided by height and is not tested separately.
 The local indicator is described in the dataset section but is not tested.
 The F-test assumes independent normal populations; histograms show concentrated, non-bell-shaped distributions.
-Fligner-Killeen is used as a rank-based variance check; the bootstrap interval resamples rows independently within class.
+Fligner-Killeen is used as a rank-based variance check that is less sensitive to non-normality.
 Exact repeated feature rows do not prove repeated physical images because no unique image identifier is supplied.

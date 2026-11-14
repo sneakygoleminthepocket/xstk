@@ -1,0 +1,6 @@
+
+	Pearson's Chi-squared test
+
+data:  missing_table
+X-squared = 36.205, df = 1, p-value = 1.776e-09
+
