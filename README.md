@@ -7,7 +7,7 @@ This project examines the relationship between image dimensions and the advertis
 - `R/analysis.R` — complete analysis pipeline, written in base R.
 - `data/add.csv` — supplied dataset copy.
 - `figures/` — figures produced by the R pipeline.
-- `outputs/` — descriptive tables, inferential results, classification results, and audit files.
+- `outputs/` — descriptive tables, inferential results, classification results.
 
 ## Analysis overview
 
@@ -49,7 +49,3 @@ The R pipeline writes descriptive and inferential CSV results, LaTeX table fragm
 - Kushmerick, N. (1999). *Internet Advertisements* [Data set]. UCI Machine Learning Repository. <https://doi.org/10.24432/C5V011>.
 - James, G., Witten, D., Hastie, T., and Tibshirani, R. (2021). *An Introduction to Statistical Learning: With Applications in R* (2nd ed.). Springer. <https://www.statlearning.com/>.
 - Fligner, M. A., and Killeen, T. J. (1976). Distribution-free two-sample tests for scale. *Journal of the American Statistical Association*, 71(353), 210–213. <https://doi.org/10.1080/01621459.1976.10481517>.
-
-## Generated classification outputs
-
-The outputs include `partB_audit.txt`, console excerpts for the logistic model and the three Part A tests, the 468-by-60 descriptive rule summary, held-out metrics, cross-validation AUC, and ROC coordinates.
