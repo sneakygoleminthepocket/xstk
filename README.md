@@ -4,12 +4,10 @@ This project examines the relationship between image dimensions and the advertis
 
 ## Project structure
 
-- `main.tex` — report source, designed for XeLaTeX or LuaLaTeX.
 - `R/analysis.R` — complete analysis pipeline, written in base R.
 - `data/add.csv` — supplied dataset copy.
 - `figures/` — figures produced by the R pipeline.
 - `outputs/` — descriptive tables, inferential results, classification results, and audit files.
-- `image/` — institutional image paths recognized by the report template.
 
 ## Analysis overview
 
@@ -30,15 +28,13 @@ The report evaluates the held-out predictions using a confusion matrix, accuracy
 
 ## Execution
 
-The pipeline requires base R and does not require additional R packages. From the project root, the analysis and report can be generated with:
+The pipeline requires base R and does not require additional R packages. From the project root, the analysis can be generated with:
 
 ```bat
 Rscript R/analysis.R
-xelatex main.tex
-xelatex main.tex
 ```
 
-On Windows, `run_project.bat` locates `Rscript`, executes the analysis pipeline, and compiles the report with XeLaTeX. RStudio can also run the script after the project root is set as the working directory.
+On Windows, `run_project.bat` locates `Rscript`, executes the analysis pipeline. RStudio can also run the script after the project root is set as the working directory.
 
 ## Generated outputs
 
